@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { callAIAgent, uploadFiles } from '@/lib/aiAgent'
 import { copyToClipboard } from '@/lib/clipboard'
+import { generateCVPDF, downloadPDF, CVData } from '@/lib/pdfGenerator'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -28,7 +29,10 @@ import {
   Lightbulb,
   BarChart3,
   Users,
-  MessageSquare
+  MessageSquare,
+  FileEdit,
+  Download,
+  Share2
 } from 'lucide-react'
 
 // Agent IDs
@@ -37,6 +41,8 @@ const AGENT_IDS = {
   CONTENT_GENERATOR: '6985825d382ef8715224cf07',
   QUALITY_ASSURANCE: '698582830ee88347863f0706',
   GROWTH_MANAGER: '698582abb90162af337b1dfd',
+  CV_UPDATER: '69858af22237a2c55706b059',
+  LINKEDIN_ACHIEVEMENT_POSTER: '69858af2a791e6e318b8deb5',
 }
 
 // TypeScript Interfaces from actual test responses
@@ -112,6 +118,57 @@ interface GrowthManagerResult {
   overall_assessment: string
 }
 
+interface CVUpdaterResult {
+  personal_info: {
+    name: string
+    email: string
+    phone: string
+    location: string
+    linkedin: string
+    summary: string
+  }
+  experience: Array<{
+    title: string
+    company: string
+    location: string
+    duration: string
+    responsibilities: string[]
+  }>
+  skills: {
+    technical: string[]
+    soft: string[]
+    tools: string[]
+  }
+  education: Array<{
+    degree: string
+    institution: string
+    duration: string
+    details: string
+  }>
+  certifications: string[]
+  achievements: string[]
+  changes_made: string[]
+  suggestions: string[]
+}
+
+interface LinkedInAchievementPosterResult {
+  post_content: string
+  post_metadata: {
+    tone: string
+    category: string
+    estimated_engagement: string
+    target_audience: string
+  }
+  engagement_tips: string[]
+  alternative_versions: Array<{
+    tone: string
+    content: string
+    hashtags: string[]
+  }>
+  linkedin_publish_ready: boolean
+  publish_recommendation: string
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('overview')
 
@@ -135,11 +192,13 @@ export default function Home() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 bg-blue-50 border border-blue-200">
+          <TabsList className="grid w-full grid-cols-7 bg-blue-50 border border-blue-200">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="cv-analysis">CV Analysis</TabsTrigger>
+            <TabsTrigger value="cv-updater">CV Updater</TabsTrigger>
             <TabsTrigger value="content">Content Generator</TabsTrigger>
             <TabsTrigger value="qa">Quality Check</TabsTrigger>
+            <TabsTrigger value="linkedin-poster">LinkedIn Poster</TabsTrigger>
             <TabsTrigger value="complete">Full Optimization</TabsTrigger>
           </TabsList>
 
@@ -257,6 +316,74 @@ export default function Home() {
                 </CardContent>
               </Card>
 
+              {/* CV Updater Card */}
+              <Card
+                className="bg-blue-50 border-blue-300 hover:border-blue-500 hover:shadow-md transition-all cursor-pointer"
+                onClick={() => setActiveTab('cv-updater')}
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <FileEdit className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <CardTitle className="text-gray-900">CV Updater</CardTitle>
+                  </div>
+                  <CardDescription className="text-blue-700">
+                    Update your CV with AI assistance and download as a professional PDF
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Update CV sections with text prompts
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Professional PDF generation
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Suggestions for improvements
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* LinkedIn Achievement Poster Card */}
+              <Card
+                className="bg-blue-50 border-blue-300 hover:border-blue-500 hover:shadow-md transition-all cursor-pointer"
+                onClick={() => setActiveTab('linkedin-poster')}
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <Share2 className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <CardTitle className="text-gray-900">LinkedIn Achievement Poster</CardTitle>
+                  </div>
+                  <CardDescription className="text-blue-700">
+                    Create and publish professional achievement posts directly to LinkedIn
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Multiple tone variations
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Direct LinkedIn publishing
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      Engagement optimization tips
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
               {/* Complete Optimization Card */}
               <Card
                 className="bg-blue-50 border-blue-300 hover:border-blue-500 hover:shadow-md transition-all cursor-pointer"
@@ -298,6 +425,11 @@ export default function Home() {
             <CVAnalysisSection />
           </TabsContent>
 
+          {/* CV Updater Tab */}
+          <TabsContent value="cv-updater">
+            <CVUpdaterSection />
+          </TabsContent>
+
           {/* Content Generator Tab */}
           <TabsContent value="content">
             <ContentGeneratorSection />
@@ -306,6 +438,11 @@ export default function Home() {
           {/* Quality Assurance Tab */}
           <TabsContent value="qa">
             <QualityAssuranceSection />
+          </TabsContent>
+
+          {/* LinkedIn Achievement Poster Tab */}
+          <TabsContent value="linkedin-poster">
+            <LinkedInAchievementPosterSection />
           </TabsContent>
 
           {/* Complete Optimization Tab */}
@@ -1104,6 +1241,394 @@ function QualityAssuranceSection() {
   )
 }
 
+// CV Updater Component
+function CVUpdaterSection() {
+  const [currentCV, setCurrentCV] = useState('')
+  const [cvFile, setCVFile] = useState<File | null>(null)
+  const [updatePrompt, setUpdatePrompt] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState<CVUpdaterResult | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [downloadingPDF, setDownloadingPDF] = useState(false)
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setCVFile(e.target.files[0])
+    }
+  }
+
+  const handleUpdate = async () => {
+    if (!updatePrompt.trim()) {
+      setError('Please provide update instructions')
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+    setResult(null)
+
+    try {
+      let message = `Update CV request: ${updatePrompt}`
+      if (currentCV.trim()) {
+        message += `\n\nCurrent CV content: ${currentCV}`
+      }
+
+      // Upload CV file if provided
+      if (cvFile) {
+        const uploadResult = await uploadFiles(cvFile)
+        if (uploadResult.success && uploadResult.asset_ids.length > 0) {
+          const response = await callAIAgent(
+            message,
+            AGENT_IDS.CV_UPDATER,
+            { assets: uploadResult.asset_ids }
+          )
+
+          if (response.success && response.response.status === 'success') {
+            setResult(response.response.result as CVUpdaterResult)
+          } else {
+            setError(response.response.message || 'CV update failed')
+          }
+        } else {
+          setError('Failed to upload CV file')
+        }
+      } else {
+        const response = await callAIAgent(message, AGENT_IDS.CV_UPDATER)
+
+        if (response.success && response.response.status === 'success') {
+          setResult(response.response.result as CVUpdaterResult)
+        } else {
+          setError(response.response.message || 'CV update failed')
+        }
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleDownloadPDF = async () => {
+    if (!result) return
+
+    setDownloadingPDF(true)
+    try {
+      const cvData: CVData = {
+        personal_info: result.personal_info,
+        experience: result.experience,
+        skills: result.skills,
+        education: result.education,
+        certifications: result.certifications,
+        achievements: result.achievements,
+      }
+
+      const pdfBlob = await generateCVPDF(cvData)
+      downloadPDF(pdfBlob, `${result.personal_info.name.replace(/\s+/g, '_')}_CV.pdf`)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'PDF generation failed')
+    } finally {
+      setDownloadingPDF(false)
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <Card className="bg-white border-blue-200 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-gray-900 flex items-center gap-2">
+            <FileEdit className="h-6 w-6 text-blue-600" />
+            CV Updater with PDF Export
+          </CardTitle>
+          <CardDescription className="text-blue-600">
+            Update your CV using AI assistance and download as a professional PDF
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* File Upload */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Current CV (Optional)
+            </label>
+            <div className="flex items-center gap-4">
+              <Input
+                type="file"
+                accept=".pdf,.doc,.docx,.txt"
+                onChange={handleFileChange}
+                className="bg-white border-blue-300 text-gray-900"
+              />
+              {cvFile && (
+                <Badge variant="secondary" className="bg-blue-100 text-blue-700 border-blue-300">
+                  {cvFile.name}
+                </Badge>
+              )}
+            </div>
+          </div>
+
+          {/* Current CV Text */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Or Paste Current CV Content
+            </label>
+            <Textarea
+              placeholder="Paste your current CV content here or describe what's in your CV..."
+              value={currentCV}
+              onChange={(e) => setCurrentCV(e.target.value)}
+              rows={6}
+              className="bg-white border-blue-300 text-gray-900 placeholder:text-gray-400"
+            />
+          </div>
+
+          {/* Update Instructions */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Update Instructions
+            </label>
+            <Textarea
+              placeholder="Describe what you want to update... Examples:&#10;- Add new job experience at Company X as Senior Developer&#10;- Add Python and Machine Learning to skills&#10;- Update summary to emphasize leadership experience"
+              value={updatePrompt}
+              onChange={(e) => setUpdatePrompt(e.target.value)}
+              rows={5}
+              className="bg-white border-blue-300 text-gray-900 placeholder:text-gray-400"
+            />
+          </div>
+
+          {/* Update Button */}
+          <Button
+            onClick={handleUpdate}
+            disabled={loading || !updatePrompt.trim()}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Updating CV...
+              </>
+            ) : (
+              <>
+                <FileEdit className="mr-2 h-4 w-4" />
+                Update CV
+              </>
+            )}
+          </Button>
+
+          {/* Error Message */}
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Results */}
+      {result && (
+        <div className="space-y-6">
+          {/* Changes Made */}
+          {result.changes_made && result.changes_made.length > 0 && (
+            <Card className="bg-white border-blue-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-gray-900 flex items-center gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                  Changes Made
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {result.changes_made.map((change, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      {change}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Updated CV Preview */}
+          <Card className="bg-white border-blue-200 shadow-sm">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-gray-900">Updated CV Preview</CardTitle>
+                <Button
+                  onClick={handleDownloadPDF}
+                  disabled={downloadingPDF}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  {downloadingPDF ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating PDF...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="mr-2 h-4 w-4" />
+                      Download PDF
+                    </>
+                  )}
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Personal Info */}
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">{result.personal_info.name}</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {result.personal_info.email} | {result.personal_info.phone} | {result.personal_info.location}
+                </p>
+                {result.personal_info.linkedin && (
+                  <p className="text-sm text-blue-600 mt-1">{result.personal_info.linkedin}</p>
+                )}
+                {result.personal_info.summary && (
+                  <p className="text-sm text-gray-700 mt-3">{result.personal_info.summary}</p>
+                )}
+              </div>
+
+              <Separator className="bg-blue-200" />
+
+              {/* Experience */}
+              {result.experience && result.experience.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">PROFESSIONAL EXPERIENCE</h4>
+                  <div className="space-y-4">
+                    {result.experience.map((exp, idx) => (
+                      <div key={idx} className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                        <p className="font-medium text-gray-900">{exp.title} at {exp.company}</p>
+                        <p className="text-sm text-gray-600">{exp.location} | {exp.duration}</p>
+                        <ul className="mt-2 space-y-1">
+                          {exp.responsibilities.map((resp, ridx) => (
+                            <li key={ridx} className="text-sm text-gray-700 flex items-start gap-2">
+                              <span className="text-blue-600 mt-1">•</span>
+                              {resp}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Skills */}
+              {result.skills && (
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">SKILLS</h4>
+                  <div className="space-y-3">
+                    {result.skills.technical && result.skills.technical.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-1">Technical Skills</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.skills.technical.map((skill, idx) => (
+                            <Badge key={idx} variant="outline" className="border-blue-300 text-blue-600">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {result.skills.tools && result.skills.tools.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-1">Tools & Technologies</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.skills.tools.map((tool, idx) => (
+                            <Badge key={idx} variant="outline" className="border-blue-300 text-blue-600">
+                              {tool}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {result.skills.soft && result.skills.soft.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-1">Soft Skills</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.skills.soft.map((skill, idx) => (
+                            <Badge key={idx} variant="outline" className="border-blue-300 text-blue-600">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Education */}
+              {result.education && result.education.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">EDUCATION</h4>
+                  <div className="space-y-3">
+                    {result.education.map((edu, idx) => (
+                      <div key={idx} className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                        <p className="font-medium text-gray-900">{edu.degree}</p>
+                        <p className="text-sm text-gray-600">{edu.institution} | {edu.duration}</p>
+                        {edu.details && <p className="text-sm text-gray-700 mt-1">{edu.details}</p>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Certifications */}
+              {result.certifications && result.certifications.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">CERTIFICATIONS</h4>
+                  <ul className="space-y-1">
+                    {result.certifications.map((cert, idx) => (
+                      <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                        {cert}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Achievements */}
+              {result.achievements && result.achievements.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-3">ACHIEVEMENTS</h4>
+                  <ul className="space-y-1">
+                    {result.achievements.map((achievement, idx) => (
+                      <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
+                        <Award className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Suggestions */}
+          {result.suggestions && result.suggestions.length > 0 && (
+            <Card className="bg-white border-blue-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-gray-900 flex items-center gap-2">
+                  <Lightbulb className="h-5 w-5 text-blue-600" />
+                  Suggestions for Further Improvement
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {result.suggestions.map((suggestion, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Complete Optimization Component
 function CompleteOptimizationSection() {
   const [request, setRequest] = useState('')
@@ -1324,6 +1849,320 @@ function CompleteOptimizationSection() {
                 <strong>Overall Assessment:</strong> {result.overall_assessment}
               </AlertDescription>
             </Alert>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// LinkedIn Achievement Poster Component
+function LinkedInAchievementPosterSection() {
+  const [achievement, setAchievement] = useState('')
+  const [tone, setTone] = useState('professional')
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState<LinkedInAchievementPosterResult | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [publishing, setPublishing] = useState(false)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+
+  const handleGenerate = async () => {
+    if (!achievement.trim()) {
+      setError('Please describe your achievement')
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+    setResult(null)
+
+    try {
+      const message = `Create a LinkedIn achievement post with ${tone} tone: ${achievement}`
+      const response = await callAIAgent(message, AGENT_IDS.LINKEDIN_ACHIEVEMENT_POSTER)
+
+      if (response.success && response.response.status === 'success') {
+        setResult(response.response.result as LinkedInAchievementPosterResult)
+      } else {
+        setError(response.response.message || 'Post generation failed')
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handlePublish = async () => {
+    if (!result) return
+
+    setPublishing(true)
+    try {
+      // The agent handles OAuth automatically - just call with publish intent
+      const message = `Publish this achievement to LinkedIn: ${result.post_content}`
+      const response = await callAIAgent(message, AGENT_IDS.LINKEDIN_ACHIEVEMENT_POSTER)
+
+      if (response.success) {
+        // Success - agent published to LinkedIn
+        setError(null)
+      } else {
+        setError('Failed to publish to LinkedIn')
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Publishing failed')
+    } finally {
+      setPublishing(false)
+    }
+  }
+
+  const handleCopy = async (content: string, index: number) => {
+    const success = await copyToClipboard(content)
+    if (success) {
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <Card className="bg-white border-blue-200 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-gray-900 flex items-center gap-2">
+            <Share2 className="h-6 w-6 text-blue-600" />
+            LinkedIn Achievement Poster
+          </CardTitle>
+          <CardDescription className="text-blue-600">
+            Create professional achievement posts and publish directly to LinkedIn
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Achievement Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Describe Your Achievement
+            </label>
+            <Textarea
+              placeholder="Describe your achievement... Examples:&#10;- Completed certification in AWS Solutions Architect&#10;- Led team to successful product launch reaching 10k users&#10;- Published research paper on machine learning applications"
+              value={achievement}
+              onChange={(e) => setAchievement(e.target.value)}
+              rows={5}
+              className="bg-white border-blue-300 text-gray-900 placeholder:text-gray-400"
+            />
+          </div>
+
+          {/* Tone Selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Post Tone
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {['professional', 'casual', 'celebratory'].map((t) => (
+                <Button
+                  key={t}
+                  variant={tone === t ? 'default' : 'outline'}
+                  onClick={() => setTone(t)}
+                  className={tone === t
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'border-blue-300 text-blue-600 hover:bg-blue-50'
+                  }
+                >
+                  {t.charAt(0).toUpperCase() + t.slice(1)}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Generate Button */}
+          <Button
+            onClick={handleGenerate}
+            disabled={loading || !achievement.trim()}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generating Post...
+              </>
+            ) : (
+              <>
+                <Sparkles className="mr-2 h-4 w-4" />
+                Generate Achievement Post
+              </>
+            )}
+          </Button>
+
+          {/* Error Message */}
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Results */}
+      {result && (
+        <div className="space-y-6">
+          {/* Main Post */}
+          <Card className="bg-white border-blue-200 shadow-sm">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-gray-900">Generated Post</CardTitle>
+                <div className="flex items-center gap-2">
+                  <Badge className="bg-blue-100 text-blue-600 border-blue-300">
+                    {result.post_metadata.tone}
+                  </Badge>
+                  {result.linkedin_publish_ready && (
+                    <Badge className="bg-blue-100 text-blue-600 border-blue-300">
+                      Ready to Publish
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Post Content */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <p className="text-gray-900 whitespace-pre-wrap">{result.post_content}</p>
+              </div>
+
+              {/* Metadata */}
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-blue-600 font-medium">Category:</span>
+                  <p className="text-gray-700">{result.post_metadata.category}</p>
+                </div>
+                <div>
+                  <span className="text-blue-600 font-medium">Target Audience:</span>
+                  <p className="text-gray-700">{result.post_metadata.target_audience}</p>
+                </div>
+                <div>
+                  <span className="text-blue-600 font-medium">Estimated Engagement:</span>
+                  <p className="text-gray-700">{result.post_metadata.estimated_engagement}</p>
+                </div>
+              </div>
+
+              <Separator className="bg-blue-200" />
+
+              {/* Actions */}
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => handleCopy(result.post_content, 0)}
+                  variant="outline"
+                  className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50"
+                >
+                  {copiedIndex === 0 ? (
+                    <>
+                      <CheckCircle2 className="mr-2 h-4 w-4" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="mr-2 h-4 w-4" />
+                      Copy Post
+                    </>
+                  )}
+                </Button>
+                <Button
+                  onClick={handlePublish}
+                  disabled={publishing || !result.linkedin_publish_ready}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  {publishing ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Publishing...
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="mr-2 h-4 w-4" />
+                      Publish to LinkedIn
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {/* Publish Recommendation */}
+              {result.publish_recommendation && (
+                <Alert className="bg-blue-50 border-blue-300">
+                  <Lightbulb className="h-4 w-4 text-blue-600" />
+                  <AlertDescription className="text-gray-700">
+                    <strong>Publishing Tip:</strong> {result.publish_recommendation}
+                  </AlertDescription>
+                </Alert>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Engagement Tips */}
+          {result.engagement_tips && result.engagement_tips.length > 0 && (
+            <Card className="bg-white border-blue-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-gray-900 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                  Engagement Optimization Tips
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {result.engagement_tips.map((tip, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Alternative Versions */}
+          {result.alternative_versions && result.alternative_versions.length > 0 && (
+            <Card className="bg-white border-blue-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-gray-900">Alternative Versions</CardTitle>
+                <CardDescription className="text-blue-600">
+                  Try these variations with different tones
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {result.alternative_versions.map((version, idx) => (
+                  <div key={idx} className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <div className="flex items-center justify-between mb-3">
+                      <Badge className="bg-blue-100 text-blue-600">
+                        {version.tone} tone
+                      </Badge>
+                      <Button
+                        onClick={() => handleCopy(version.content, idx + 1)}
+                        variant="outline"
+                        size="sm"
+                        className="border-blue-300 text-blue-600 hover:bg-blue-50"
+                      >
+                        {copiedIndex === idx + 1 ? (
+                          <>
+                            <CheckCircle2 className="mr-2 h-3 w-3" />
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="mr-2 h-3 w-3" />
+                            Copy
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                    <p className="text-gray-900 text-sm whitespace-pre-wrap mb-3">{version.content}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {version.hashtags.map((tag, tidx) => (
+                        <Badge key={tidx} variant="outline" className="border-blue-300 text-blue-600 text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           )}
         </div>
       )}

@@ -38,6 +38,22 @@
       "description": "Reviews LinkedIn content for quality, accuracy, professionalism, and SEO optimization",
       "model": "gpt-4o",
       "temperature": 0.3
+    },
+    "cv_updater_agent": {
+      "agent_id": "69858af22237a2c55706b059",
+      "name": "CV Updater Agent",
+      "role": "sub-agent",
+      "description": "Updates and enhances CVs based on text prompts with PDF generation support",
+      "model": "gpt-4o",
+      "temperature": 0.3
+    },
+    "linkedin_achievement_poster_agent": {
+      "agent_id": "69858af2a791e6e318b8deb5",
+      "name": "LinkedIn Achievement Poster Agent",
+      "role": "sub-agent",
+      "description": "Creates and publishes professional achievement posts to LinkedIn",
+      "model": "gpt-4o",
+      "temperature": 0.5
     }
   },
   "workflow_patterns": {
@@ -55,16 +71,28 @@
       "description": "End-to-end profile optimization and content creation",
       "agents_involved": ["cv_analysis_agent", "content_generator_agent", "quality_assurance_agent"],
       "coordinator": "linkedin_growth_manager"
+    },
+    "cv_update_flow": {
+      "description": "CV update based on text prompts with PDF generation",
+      "agents_involved": ["cv_updater_agent"],
+      "coordinator": "linkedin_growth_manager"
+    },
+    "linkedin_posting_flow": {
+      "description": "Create and publish achievements to LinkedIn",
+      "agents_involved": ["linkedin_achievement_poster_agent"],
+      "coordinator": "linkedin_growth_manager"
     }
   },
   "response_schemas": {
     "cv_analysis_agent": "response_schemas/cv_analysis_agent_response.json",
     "content_generator_agent": "response_schemas/content_generator_agent_response.json",
     "quality_assurance_agent": "response_schemas/quality_assurance_agent_response.json",
-    "linkedin_growth_manager": "response_schemas/linkedin_growth_manager_agent_response.json"
+    "linkedin_growth_manager": "response_schemas/linkedin_growth_manager_agent_response.json",
+    "cv_updater_agent": "response_schemas/cv_updater_agent_response.json",
+    "linkedin_achievement_poster_agent": "response_schemas/linkedin_achievement_poster_agent_response.json"
   },
   "status": "complete",
-  "total_agents": 4,
+  "total_agents": 6,
   "manager_agents": 1,
-  "sub_agents": 3
+  "sub_agents": 5
 }

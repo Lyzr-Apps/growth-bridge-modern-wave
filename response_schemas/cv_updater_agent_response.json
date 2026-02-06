@@ -1,0 +1,190 @@
+{
+  "agent_name": "CV Updater Agent",
+  "agent_id": "69858af22237a2c55706b059",
+  "agent_purpose": "cv_updater",
+  "description": "CV update and enhancement with structured output for PDF generation",
+  "response_schema": {
+    "status": "string",
+    "updated_cv": {
+      "personal_info": {
+        "name": "string",
+        "email": "string",
+        "phone": "string",
+        "location": "string",
+        "linkedin": "string",
+        "summary": "string"
+      },
+      "experience": [
+        {
+          "title": "string",
+          "company": "string",
+          "location": "string",
+          "duration": "string",
+          "responsibilities": [
+            "string"
+          ]
+        }
+      ],
+      "skills": {
+        "technical": [
+          "string"
+        ],
+        "soft": [
+          "string"
+        ],
+        "tools": [
+          "string"
+        ]
+      },
+      "education": [
+        {
+          "degree": "string",
+          "institution": "string",
+          "duration": "string",
+          "details": "string"
+        }
+      ],
+      "certifications": [
+        "string"
+      ],
+      "achievements": [
+        "string"
+      ]
+    },
+    "changes_made": [
+      "string"
+    ],
+    "suggestions": [
+      "string"
+    ]
+  },
+  "example_response": {
+    "status": "success",
+    "updated_cv": {
+      "personal_info": {
+        "name": "Jane Doe",
+        "email": "jane.doe@email.com",
+        "phone": "+1234567890",
+        "location": "New York, USA",
+        "linkedin": "linkedin.com/in/janedoe",
+        "summary": "Accomplished marketing specialist with over 8 years of experience in digital strategy and brand management."
+      },
+      "experience": [
+        {
+          "title": "Senior Marketing Manager",
+          "company": "Tech Innovations Inc.",
+          "location": "New York, USA",
+          "duration": "Jan 2020 - Present",
+          "responsibilities": [
+            "Led a team of 10 in developing digital marketing strategies that increased online engagement by 25%.",
+            "Implemented CRM tools that improved customer retention by 15%."
+          ]
+        }
+      ],
+      "skills": {
+        "technical": [
+          "SEO Optimization",
+          "Data Analysis"
+        ],
+        "soft": [
+          "Leadership",
+          "Communication"
+        ],
+        "tools": [
+          "Google Analytics",
+          "Salesforce"
+        ]
+      },
+      "education": [
+        {
+          "degree": "Bachelor of Science in Marketing",
+          "institution": "University of Marketing",
+          "duration": "2012 - 2016",
+          "details": "GPA: 3.8, Magna Cum Laude"
+        }
+      ],
+      "certifications": [
+        "Certified Digital Marketing Professional (CDMP)"
+      ],
+      "achievements": [
+        "Awarded 'Marketer of the Year' by Marketing Association in 2022",
+        "Increased company's social media followers by 40% within a year"
+      ]
+    },
+    "changes_made": [
+      "Added new experience as Senior Marketing Manager at Tech Innovations Inc.",
+      "Updated summary section with current experience",
+      "Added certifications and recent achievements"
+    ],
+    "suggestions": [
+      "Consider adding additional certifications related to data analytics to enhance ATS ranking.",
+      "Expand network by participating in relevant industry forums and events."
+    ]
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:32:37.666578",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "updated_cv": {
+      "personal_info": {
+        "name": "Jane Doe",
+        "email": "jane.doe@email.com",
+        "phone": "+1234567890",
+        "location": "New York, USA",
+        "linkedin": "linkedin.com/in/janedoe",
+        "summary": "Accomplished marketing specialist with over 8 years of experience in digital strategy and brand management."
+      },
+      "experience": [
+        {
+          "title": "Senior Marketing Manager",
+          "company": "Tech Innovations Inc.",
+          "location": "New York, USA",
+          "duration": "Jan 2020 - Present",
+          "responsibilities": [
+            "Led a team of 10 in developing digital marketing strategies that increased online engagement by 25%.",
+            "Implemented CRM tools that improved customer retention by 15%."
+          ]
+        }
+      ],
+      "skills": {
+        "technical": [
+          "SEO Optimization",
+          "Data Analysis"
+        ],
+        "soft": [
+          "Leadership",
+          "Communication"
+        ],
+        "tools": [
+          "Google Analytics",
+          "Salesforce"
+        ]
+      },
+      "education": [
+        {
+          "degree": "Bachelor of Science in Marketing",
+          "institution": "University of Marketing",
+          "duration": "2012 - 2016",
+          "details": "GPA: 3.8, Magna Cum Laude"
+        }
+      ],
+      "certifications": [
+        "Certified Digital Marketing Professional (CDMP)"
+      ],
+      "achievements": [
+        "Awarded 'Marketer of the Year' by Marketing Association in 2022",
+        "Increased company's social media followers by 40% within a year"
+      ]
+    },
+    "changes_made": [
+      "Added new experience as Senior Marketing Manager at Tech Innovations Inc.",
+      "Updated summary section with current experience",
+      "Added certifications and recent achievements"
+    ],
+    "suggestions": [
+      "Consider adding additional certifications related to data analytics to enhance ATS ranking.",
+      "Expand network by participating in relevant industry forums and events."
+    ]
+  }
+}

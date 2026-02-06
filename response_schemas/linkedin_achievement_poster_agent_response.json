@@ -1,0 +1,114 @@
+{
+  "agent_name": "LinkedIn Achievement Poster Agent",
+  "agent_id": "69858af2a791e6e318b8deb5",
+  "agent_purpose": "linkedin_achievement_poster",
+  "description": "LinkedIn achievement post creation and publishing preparation",
+  "response_schema": {
+    "status": "string",
+    "post_content": "string",
+    "post_metadata": {
+      "primary_hashtags": [
+        "string"
+      ],
+      "secondary_hashtags": [
+        "string"
+      ],
+      "keywords": [
+        "string"
+      ],
+      "character_count": "number",
+      "estimated_reach": "string",
+      "best_time_to_post": "string"
+    },
+    "engagement_tips": [
+      "string"
+    ],
+    "alternative_versions": [
+      {
+        "tone": "string",
+        "content": "string"
+      }
+    ],
+    "linkedin_publish_ready": "boolean",
+    "publish_recommendation": "string"
+  },
+  "example_response": {
+    "status": "success",
+    "post_content": "Thrilled to share that I've been promoted to Senior Developer! \ud83c\udf89 This milestone wouldn't have been possible without the amazing support from my team and mentors. Looking forward to tackling new challenges and contributing even more to our projects. #CareerGrowth #NewHorizons #TechLife",
+    "post_metadata": {
+      "primary_hashtags": [
+        "#CareerGrowth",
+        "#NewHorizons",
+        "#TechLife"
+      ],
+      "secondary_hashtags": [
+        "#TeamSuccess",
+        "#LeadershipJourney"
+      ],
+      "keywords": [
+        "promotion",
+        "Senior Developer"
+      ],
+      "character_count": 246,
+      "estimated_reach": "high",
+      "best_time_to_post": "9 AM - 11 AM on weekdays"
+    },
+    "engagement_tips": [
+      "Engage with comments promptly to foster community",
+      "Share personal insights or a short story about your journey to this achievement"
+    ],
+    "alternative_versions": [
+      {
+        "tone": "celebratory",
+        "content": "I'm excited to announce my promotion to Senior Developer! A huge thank you to everyone who has been a part of my journey. Let's continue to achieve great things together! \ud83d\ude80 #CelebratingSuccess #TechAdvancement"
+      },
+      {
+        "tone": "professional",
+        "content": "I am pleased to share that I have advanced to the position of Senior Developer. Grateful for the opportunity and eager to contribute further to our team. Thank you to all who supported me along the way. #ProfessionalGrowth #CareerMilestone"
+      }
+    ],
+    "linkedin_publish_ready": true,
+    "publish_recommendation": "Posting between 9 AM - 11 AM on weekdays is recommended for optimal reach and engagement."
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:32:43.238832",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "post_content": "Thrilled to share that I've been promoted to Senior Developer! \ud83c\udf89 This milestone wouldn't have been possible without the amazing support from my team and mentors. Looking forward to tackling new challenges and contributing even more to our projects. #CareerGrowth #NewHorizons #TechLife",
+    "post_metadata": {
+      "primary_hashtags": [
+        "#CareerGrowth",
+        "#NewHorizons",
+        "#TechLife"
+      ],
+      "secondary_hashtags": [
+        "#TeamSuccess",
+        "#LeadershipJourney"
+      ],
+      "keywords": [
+        "promotion",
+        "Senior Developer"
+      ],
+      "character_count": 246,
+      "estimated_reach": "high",
+      "best_time_to_post": "9 AM - 11 AM on weekdays"
+    },
+    "engagement_tips": [
+      "Engage with comments promptly to foster community",
+      "Share personal insights or a short story about your journey to this achievement"
+    ],
+    "alternative_versions": [
+      {
+        "tone": "celebratory",
+        "content": "I'm excited to announce my promotion to Senior Developer! A huge thank you to everyone who has been a part of my journey. Let's continue to achieve great things together! \ud83d\ude80 #CelebratingSuccess #TechAdvancement"
+      },
+      {
+        "tone": "professional",
+        "content": "I am pleased to share that I have advanced to the position of Senior Developer. Grateful for the opportunity and eager to contribute further to our team. Thank you to all who supported me along the way. #ProfessionalGrowth #CareerMilestone"
+      }
+    ],
+    "linkedin_publish_ready": true,
+    "publish_recommendation": "Posting between 9 AM - 11 AM on weekdays is recommended for optimal reach and engagement."
+  }
+}

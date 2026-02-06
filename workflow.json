@@ -39,6 +39,22 @@
       "agent_name": "Quality Assurance Agent"
     },
     {
+      "id": "cv_updater_agent",
+      "type": "Agent",
+      "label": "CV Updater Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69858af22237a2c55706b059",
+      "agent_name": "CV Updater Agent"
+    },
+    {
+      "id": "linkedin_achievement_poster_agent",
+      "type": "Agent",
+      "label": "LinkedIn Achievement Poster Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69858af2a791e6e318b8deb5",
+      "agent_name": "LinkedIn Achievement Poster Agent"
+    },
+    {
       "id": "output_node",
       "type": "Output",
       "label": "Optimized LinkedIn Content",
@@ -76,6 +92,22 @@
     },
     {
       "source": "linkedin_growth_manager",
+      "target": "cv_updater_agent"
+    },
+    {
+      "source": "cv_updater_agent",
+      "target": "linkedin_growth_manager"
+    },
+    {
+      "source": "linkedin_growth_manager",
+      "target": "linkedin_achievement_poster_agent"
+    },
+    {
+      "source": "linkedin_achievement_poster_agent",
+      "target": "output_node"
+    },
+    {
+      "source": "linkedin_growth_manager",
       "target": "output_node"
     }
   ],
@@ -83,8 +115,8 @@
     "workflow_name": "LinkedIn Growth & Career Agent System",
     "description": "Comprehensive LinkedIn profile optimization and content creation system with manager-worker pattern",
     "created_at": "2026-02-06",
-    "total_agents": 4,
+    "total_agents": 6,
     "manager_agent": "linkedin_growth_manager",
-    "sub_agents": ["cv_analysis_agent", "content_generator_agent", "quality_assurance_agent"]
+    "sub_agents": ["cv_analysis_agent", "content_generator_agent", "quality_assurance_agent", "cv_updater_agent", "linkedin_achievement_poster_agent"]
   }
 }
