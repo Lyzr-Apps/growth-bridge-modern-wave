@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  linkedin-growth-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    container_name: linkedin-growth-agent
