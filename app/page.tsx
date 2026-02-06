@@ -430,7 +430,7 @@ function CVAnalysisSection() {
           <Button
             onClick={handleAnalyze}
             disabled={loading || !linkedinProfile.trim()}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
           >
             {loading ? (
               <>
@@ -745,7 +745,7 @@ function ContentGeneratorSection() {
                 <CardContent className="space-y-4">
                   {/* Post Content */}
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                    <p className="text-blue-100 whitespace-pre-wrap">{variation.post_content}</p>
+                    <p className="text-gray-900 whitespace-pre-wrap">{variation.post_content}</p>
                   </div>
 
                   {/* Metadata */}
