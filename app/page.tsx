@@ -1322,7 +1322,10 @@ function CVUpdaterSection() {
       }
 
       const pdfBlob = await generateCVPDF(cvData)
-      downloadPDF(pdfBlob, `${result.personal_info.name.replace(/\s+/g, '_')}_CV.pdf`)
+      const filename = result.personal_info?.name
+        ? `${result.personal_info.name.replace(/\s+/g, '_')}_CV.pdf`
+        : 'CV.pdf'
+      downloadPDF(pdfBlob, filename)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'PDF generation failed')
     } finally {
@@ -1471,18 +1474,20 @@ function CVUpdaterSection() {
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Personal Info */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{result.personal_info.name}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  {result.personal_info.email} | {result.personal_info.phone} | {result.personal_info.location}
-                </p>
-                {result.personal_info.linkedin && (
-                  <p className="text-sm text-blue-600 mt-1">{result.personal_info.linkedin}</p>
-                )}
-                {result.personal_info.summary && (
-                  <p className="text-sm text-gray-700 mt-3">{result.personal_info.summary}</p>
-                )}
-              </div>
+              {result.personal_info && (
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{result.personal_info.name || 'Name not provided'}</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {result.personal_info.email || ''} {result.personal_info.email && result.personal_info.phone && '|'} {result.personal_info.phone || ''} {(result.personal_info.email || result.personal_info.phone) && result.personal_info.location && '|'} {result.personal_info.location || ''}
+                  </p>
+                  {result.personal_info.linkedin && (
+                    <p className="text-sm text-blue-600 mt-1">{result.personal_info.linkedin}</p>
+                  )}
+                  {result.personal_info.summary && (
+                    <p className="text-sm text-gray-700 mt-3">{result.personal_info.summary}</p>
+                  )}
+                </div>
+              )}
 
               <Separator className="bg-blue-200" />
 
