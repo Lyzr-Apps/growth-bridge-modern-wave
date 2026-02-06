@@ -1,0 +1,115 @@
+{
+  "agent_name": "LinkedIn Growth Manager Agent",
+  "agent_id": "698582abb90162af337b1dfd",
+  "agent_purpose": "workflow_management",
+  "description": "Schema for LinkedIn Growth Manager coordinating multi-agent workflows and aggregating results from specialist agents. Returns pure JSON without markdown formatting.",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "request_type": "string",
+      "workflow_summary": "string",
+      "agents_engaged": [
+        "string"
+      ],
+      "aggregated_results": {
+        "cv_analysis": {},
+        "content_generated": {
+          "title": "string",
+          "content": "string"
+        },
+        "quality_review": {
+          "quality_score": "number",
+          "feedback": "string"
+        }
+      },
+      "recommendations": [
+        "string"
+      ],
+      "next_steps": [
+        "string"
+      ],
+      "overall_assessment": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "workflow_type": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "request_type": "Content Generation Workflow",
+      "workflow_summary": "Coordinated content creation for a thought leadership post on AI trends in healthcare.",
+      "agents_engaged": [
+        "Content Generator Agent",
+        "Quality Assurance Agent"
+      ],
+      "aggregated_results": {
+        "cv_analysis": {},
+        "content_generated": {
+          "title": "Harnessing AI for the Future of Healthcare Diagnostics",
+          "content": "As we continue to advance machine learning models for medical diagnostics, the integration of AI in healthcare promises a transformative future. The potential of AI-powered systems to enhance diagnostic accuracy and speed is unprecedented. By leveraging vast datasets, AI can identify patterns that elude human eyes, potentially leading to earlier detection and personalized treatment plans. Looking forward, the collaboration between AI technologies and healthcare professionals will spearhead a new era in patient care, marked by enhanced precision and proactive health management."
+        },
+        "quality_review": {
+          "quality_score": 9.5,
+          "feedback": "The content is engaging and informative, effectively capturing the potential of AI in healthcare diagnostics. Ensure consistent tone and clarity."
+        }
+      },
+      "recommendations": [
+        "Share the post on LinkedIn during peak engagement times for maximum visibility.",
+        "Engage with comments to foster discussions and expand network connections."
+      ],
+      "next_steps": [
+        "Schedule a follow-up post exploring specific case studies of AI in diagnostics.",
+        "Gather and share user feedback to further enrich thought leadership content."
+      ],
+      "overall_assessment": "The content successfully positions the user as a thought leader in AI trends within healthcare, offering valuable insights into future developments."
+    },
+    "metadata": {
+      "agent_name": "LinkedIn Growth Manager Agent",
+      "timestamp": "2023-11-29T12:00:00Z",
+      "workflow_type": "Content Creation"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:02:06.235296",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "request_type": "Content Generation Workflow",
+      "workflow_summary": "Coordinated content creation for a thought leadership post on AI trends in healthcare.",
+      "agents_engaged": [
+        "Content Generator Agent",
+        "Quality Assurance Agent"
+      ],
+      "aggregated_results": {
+        "cv_analysis": {},
+        "content_generated": {
+          "title": "Harnessing AI for the Future of Healthcare Diagnostics",
+          "content": "As we continue to advance machine learning models for medical diagnostics, the integration of AI in healthcare promises a transformative future. The potential of AI-powered systems to enhance diagnostic accuracy and speed is unprecedented. By leveraging vast datasets, AI can identify patterns that elude human eyes, potentially leading to earlier detection and personalized treatment plans. Looking forward, the collaboration between AI technologies and healthcare professionals will spearhead a new era in patient care, marked by enhanced precision and proactive health management."
+        },
+        "quality_review": {
+          "quality_score": 9.5,
+          "feedback": "The content is engaging and informative, effectively capturing the potential of AI in healthcare diagnostics. Ensure consistent tone and clarity."
+        }
+      },
+      "recommendations": [
+        "Share the post on LinkedIn during peak engagement times for maximum visibility.",
+        "Engage with comments to foster discussions and expand network connections."
+      ],
+      "next_steps": [
+        "Schedule a follow-up post exploring specific case studies of AI in diagnostics.",
+        "Gather and share user feedback to further enrich thought leadership content."
+      ],
+      "overall_assessment": "The content successfully positions the user as a thought leader in AI trends within healthcare, offering valuable insights into future developments."
+    },
+    "metadata": {
+      "agent_name": "LinkedIn Growth Manager Agent",
+      "timestamp": "2023-11-29T12:00:00Z",
+      "workflow_type": "Content Creation"
+    }
+  },
+  "test_passed": true
+}

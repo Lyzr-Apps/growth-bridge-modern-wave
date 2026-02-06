@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "User Request (CV/Content/Voice)",
+      "nodeCategory": "input"
+    },
+    {
+      "id": "linkedin_growth_manager",
+      "type": "Agent",
+      "label": "LinkedIn Growth Manager",
+      "nodeCategory": "agent",
+      "agent_id": "698582abb90162af337b1dfd",
+      "agent_name": "LinkedIn Growth Manager Agent"
+    },
+    {
+      "id": "cv_analysis_agent",
+      "type": "Agent",
+      "label": "CV Analysis Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69858230a051b79c1135a076",
+      "agent_name": "CV Analysis Agent"
+    },
+    {
+      "id": "content_generator_agent",
+      "type": "Agent",
+      "label": "Content Generator Agent",
+      "nodeCategory": "agent",
+      "agent_id": "6985825d382ef8715224cf07",
+      "agent_name": "Content Generator Agent"
+    },
+    {
+      "id": "quality_assurance_agent",
+      "type": "Agent",
+      "label": "Quality Assurance Agent",
+      "nodeCategory": "agent",
+      "agent_id": "698582830ee88347863f0706",
+      "agent_name": "Quality Assurance Agent"
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Optimized LinkedIn Content",
+      "nodeCategory": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "input_node",
+      "target": "linkedin_growth_manager"
+    },
+    {
+      "source": "linkedin_growth_manager",
+      "target": "cv_analysis_agent"
+    },
+    {
+      "source": "linkedin_growth_manager",
+      "target": "content_generator_agent"
+    },
+    {
+      "source": "linkedin_growth_manager",
+      "target": "quality_assurance_agent"
+    },
+    {
+      "source": "cv_analysis_agent",
+      "target": "linkedin_growth_manager"
+    },
+    {
+      "source": "content_generator_agent",
+      "target": "quality_assurance_agent"
+    },
+    {
+      "source": "quality_assurance_agent",
+      "target": "linkedin_growth_manager"
+    },
+    {
+      "source": "linkedin_growth_manager",
+      "target": "output_node"
+    }
+  ],
+  "metadata": {
+    "workflow_name": "LinkedIn Growth & Career Agent System",
+    "description": "Comprehensive LinkedIn profile optimization and content creation system with manager-worker pattern",
+    "created_at": "2026-02-06",
+    "total_agents": 4,
+    "manager_agent": "linkedin_growth_manager",
+    "sub_agents": ["cv_analysis_agent", "content_generator_agent", "quality_assurance_agent"]
+  }
+}

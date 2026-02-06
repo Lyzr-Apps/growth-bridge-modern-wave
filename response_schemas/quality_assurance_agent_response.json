@@ -1,0 +1,137 @@
+{
+  "agent_name": "Quality Assurance Agent",
+  "agent_id": "698582830ee88347863f0706",
+  "agent_purpose": "quality_assurance",
+  "description": "Schema for LinkedIn content quality assurance with scoring, issue tracking, and approval recommendations",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "approval_status": "string",
+      "overall_score": "string",
+      "quality_scores": {
+        "content_quality": "string",
+        "seo_optimization": "string",
+        "engagement_potential": "string",
+        "brand_consistency": "string"
+      },
+      "passed_checks": [
+        "string"
+      ],
+      "failed_checks": [
+        "string"
+      ],
+      "issues_found": [
+        {
+          "category": "string",
+          "severity": "string",
+          "issue": "string",
+          "recommendation": "string"
+        }
+      ],
+      "revision_recommendations": [
+        "string"
+      ],
+      "strengths": [
+        "string"
+      ],
+      "approval_notes": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "review_type": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "approval_status": "approved",
+      "overall_score": "90",
+      "quality_scores": {
+        "content_quality": "90",
+        "seo_optimization": "85",
+        "engagement_potential": "85",
+        "brand_consistency": "95"
+      },
+      "passed_checks": [
+        "No grammar or spelling errors",
+        "3-7 relevant hashtags included",
+        "Strong hook that stops the scroll",
+        "Professional tone maintained"
+      ],
+      "failed_checks": [
+        "Primary keyword appears in first 3 lines"
+      ],
+      "issues_found": [
+        {
+          "category": "seo",
+          "severity": "medium",
+          "issue": "Primary keyword <AWS> is not explicitly emphasized in the first three lines.",
+          "recommendation": "Consider structuring the post to highlight <AWS> more prominently early on."
+        }
+      ],
+      "revision_recommendations": [
+        "Introduce the primary keyword <AWS> in a more prominent way within the first sentence for better SEO."
+      ],
+      "strengths": [
+        "Clear cohesive messaging",
+        "Professional and enthusiastic tone",
+        "Good use of relevant hashtags"
+      ],
+      "approval_notes": "The post is well-written with a professional tone and shows clear value through the achievement. It engages well with the audience through personal success and relevant hashtags, making it likely to generate interest and interaction. Consider optimizing keyword placement for future posts."
+    },
+    "metadata": {
+      "agent_name": "Quality Assurance Agent",
+      "timestamp": "2023-11-01T12:00:00Z",
+      "review_type": "content_qa"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T05:59:10.863756",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "approval_status": "approved",
+      "overall_score": "90",
+      "quality_scores": {
+        "content_quality": "90",
+        "seo_optimization": "85",
+        "engagement_potential": "85",
+        "brand_consistency": "95"
+      },
+      "passed_checks": [
+        "No grammar or spelling errors",
+        "3-7 relevant hashtags included",
+        "Strong hook that stops the scroll",
+        "Professional tone maintained"
+      ],
+      "failed_checks": [
+        "Primary keyword appears in first 3 lines"
+      ],
+      "issues_found": [
+        {
+          "category": "seo",
+          "severity": "medium",
+          "issue": "Primary keyword <AWS> is not explicitly emphasized in the first three lines.",
+          "recommendation": "Consider structuring the post to highlight <AWS> more prominently early on."
+        }
+      ],
+      "revision_recommendations": [
+        "Introduce the primary keyword <AWS> in a more prominent way within the first sentence for better SEO."
+      ],
+      "strengths": [
+        "Clear cohesive messaging",
+        "Professional and enthusiastic tone",
+        "Good use of relevant hashtags"
+      ],
+      "approval_notes": "The post is well-written with a professional tone and shows clear value through the achievement. It engages well with the audience through personal success and relevant hashtags, making it likely to generate interest and interaction. Consider optimizing keyword placement for future posts."
+    },
+    "metadata": {
+      "agent_name": "Quality Assurance Agent",
+      "timestamp": "2023-11-01T12:00:00Z",
+      "review_type": "content_qa"
+    }
+  },
+  "test_passed": true
+}

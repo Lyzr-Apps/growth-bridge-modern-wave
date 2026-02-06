@@ -1,0 +1,46 @@
+{
+  "agent_name": "LinkedIn Growth Manager Agent",
+  "agent_id": "698582abb90162af337b1dfd",
+  "test_message": "I need to create a thought leadership post about AI trends in healthcare. I've been working on ML models for medical diagnosis and want to share insights about the future of AI-powered diagnostics.",
+  "expected_purpose": "Coordinates all sub-agents for complete workflows",
+  "timestamp": "2026-02-06T06:02:06.234651",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "request_type": "Content Generation Workflow",
+      "workflow_summary": "Coordinated content creation for a thought leadership post on AI trends in healthcare.",
+      "agents_engaged": [
+        "Content Generator Agent",
+        "Quality Assurance Agent"
+      ],
+      "aggregated_results": {
+        "cv_analysis": {},
+        "content_generated": {
+          "title": "Harnessing AI for the Future of Healthcare Diagnostics",
+          "content": "As we continue to advance machine learning models for medical diagnostics, the integration of AI in healthcare promises a transformative future. The potential of AI-powered systems to enhance diagnostic accuracy and speed is unprecedented. By leveraging vast datasets, AI can identify patterns that elude human eyes, potentially leading to earlier detection and personalized treatment plans. Looking forward, the collaboration between AI technologies and healthcare professionals will spearhead a new era in patient care, marked by enhanced precision and proactive health management."
+        },
+        "quality_review": {
+          "quality_score": 9.5,
+          "feedback": "The content is engaging and informative, effectively capturing the potential of AI in healthcare diagnostics. Ensure consistent tone and clarity."
+        }
+      },
+      "recommendations": [
+        "Share the post on LinkedIn during peak engagement times for maximum visibility.",
+        "Engage with comments to foster discussions and expand network connections."
+      ],
+      "next_steps": [
+        "Schedule a follow-up post exploring specific case studies of AI in diagnostics.",
+        "Gather and share user feedback to further enrich thought leadership content."
+      ],
+      "overall_assessment": "The content successfully positions the user as a thought leader in AI trends within healthcare, offering valuable insights into future developments."
+    },
+    "metadata": {
+      "agent_name": "LinkedIn Growth Manager Agent",
+      "timestamp": "2023-11-29T12:00:00Z",
+      "workflow_type": "Content Creation"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"request_type\": \"Content Generation Workflow\",\n    \"workflow_summary\": \"Coordinated content creation for a thought leadership post on AI trends in healthcare.\",\n    \"agents_engaged\": [\"Content Generator Agent\", \"Quality Assurance Agent\"],\n    \"aggregated_results\": {\n      \"cv_analysis\": {},\n      \"content_generated\": {\n        \"title\": \"Harnessing AI for the Future of Healthcare Diagnostics\",\n        \"content\": \"As we continue to advance machine learning models for medical diagnostics, the integration of AI in healthcare promises a transformative future. The potential of AI-powered systems to enhance diagnostic accuracy and speed is unprecedented. By leveraging vast datasets, AI can identify patterns that elude human eyes, potentially leading to earlier detection and personalized treatment plans. Looking forward, the collaboration between AI technologies and healthcare professionals will spearhead a new era in patient care, marked by enhanced precision and proactive health management.\"\n      },\n      \"quality_review\": {\n        \"quality_score\": 9.5,\n        \"feedback\": \"The content is engaging and informative, effectively capturing the potential of AI in healthcare diagnostics. Ensure consistent tone and clarity.\"\n      }\n    },\n    \"recommendations\": [\n      \"Share the post on LinkedIn during peak engagement times for maximum visibility.\",\n      \"Engage with comments to foster discussions and expand network connections.\"\n    ],\n    \"next_steps\": [\n      \"Schedule a follow-up post exploring specific case studies of AI in diagnostics.\",\n      \"Gather and share user feedback to further enrich thought leadership content.\"\n    ],\n    \"overall_assessment\": \"The content successfully positions the user as a thought leader in AI trends within healthcare, offering valuable insights into future developments.\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"LinkedIn Growth Manager Agent\",\n    \"timestamp\": \"2023-11-29T12:00:00Z\",\n    \"workflow_type\": \"Content Creation\"\n  }\n}"
+}

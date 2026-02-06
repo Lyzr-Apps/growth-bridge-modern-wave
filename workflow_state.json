@@ -1,0 +1,70 @@
+{
+  "workflow_name": "LinkedIn Growth & Career Agent System",
+  "created_at": "2026-02-06",
+  "agents": {
+    "linkedin_growth_manager": {
+      "agent_id": "698582abb90162af337b1dfd",
+      "name": "LinkedIn Growth Manager Agent",
+      "role": "manager",
+      "description": "Main coordinator for LinkedIn growth and career optimization",
+      "model": "gpt-4o",
+      "temperature": 0.3,
+      "managed_agents": [
+        "69858230a051b79c1135a076",
+        "6985825d382ef8715224cf07",
+        "698582830ee88347863f0706"
+      ]
+    },
+    "cv_analysis_agent": {
+      "agent_id": "69858230a051b79c1135a076",
+      "name": "CV Analysis Agent",
+      "role": "sub-agent",
+      "description": "Analyzes CV content, compares with LinkedIn profile data, identifies gaps and optimization opportunities",
+      "model": "gpt-4o",
+      "temperature": 0.3
+    },
+    "content_generator_agent": {
+      "agent_id": "6985825d382ef8715224cf07",
+      "name": "Content Generator Agent",
+      "role": "sub-agent",
+      "description": "Creates LinkedIn posts for milestones, thought leadership, and engagement content with SEO optimization",
+      "model": "gpt-4o",
+      "temperature": 0.7
+    },
+    "quality_assurance_agent": {
+      "agent_id": "698582830ee88347863f0706",
+      "name": "Quality Assurance Agent",
+      "role": "sub-agent",
+      "description": "Reviews LinkedIn content for quality, accuracy, professionalism, and SEO optimization",
+      "model": "gpt-4o",
+      "temperature": 0.3
+    }
+  },
+  "workflow_patterns": {
+    "cv_analysis_flow": {
+      "description": "CV upload and LinkedIn profile gap analysis",
+      "agents_involved": ["cv_analysis_agent"],
+      "coordinator": "linkedin_growth_manager"
+    },
+    "content_creation_flow": {
+      "description": "Generate LinkedIn posts with quality validation",
+      "agents_involved": ["content_generator_agent", "quality_assurance_agent"],
+      "coordinator": "linkedin_growth_manager"
+    },
+    "complete_optimization_flow": {
+      "description": "End-to-end profile optimization and content creation",
+      "agents_involved": ["cv_analysis_agent", "content_generator_agent", "quality_assurance_agent"],
+      "coordinator": "linkedin_growth_manager"
+    }
+  },
+  "response_schemas": {
+    "cv_analysis_agent": "response_schemas/cv_analysis_agent_response.json",
+    "content_generator_agent": "response_schemas/content_generator_agent_response.json",
+    "quality_assurance_agent": "response_schemas/quality_assurance_agent_response.json",
+    "linkedin_growth_manager": "response_schemas/linkedin_growth_manager_agent_response.json"
+  },
+  "status": "complete",
+  "total_agents": 4,
+  "manager_agents": 1,
+  "sub_agents": 3
+}

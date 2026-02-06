@@ -1,0 +1,66 @@
+{
+  "agent_name": "CV Analysis Agent",
+  "agent_id": "69858230a051b79c1135a076",
+  "test_message": "Analyze this CV: Software Engineer with 5 years experience in Python, Django, React. Skills: Python, JavaScript, React, Docker, AWS. Education: BS Computer Science. Current LinkedIn profile has only 3 years experience listed and missing Docker and AWS skills.",
+  "expected_purpose": "Analyzes CV vs LinkedIn profile gaps",
+  "timestamp": "2026-02-06T05:58:36.907304",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "analysis_summary": "The LinkedIn profile is missing some critical experience details and specific skills that are present in the CV, leading to potential recruiter oversights.",
+      "gap_analysis": {
+        "skills_missing": [
+          "Docker",
+          "AWS"
+        ],
+        "experience_gaps": [
+          "Only 3 years of experience listed, missing 2 years",
+          "No description of experience with Django"
+        ],
+        "keyword_opportunities": [
+          "Django",
+          "Containerization",
+          "Cloud Computing"
+        ],
+        "section_improvements": [
+          {
+            "section": "Experience",
+            "recommendation": "Update the years of experience to reflect 5 years and detail the use of Django within past projects.",
+            "priority": "high"
+          },
+          {
+            "section": "Skills",
+            "recommendation": "Add Docker and AWS to showcase technical competencies.",
+            "priority": "high"
+          }
+        ]
+      },
+      "optimization_score": "70",
+      "top_recommendations": [
+        {
+          "action": "Update LinkedIn profile experience to reflect 5 years and include detailed descriptions of Django projects.",
+          "impact": "high",
+          "reason": "Ensures consistency between CV and LinkedIn and maximizes visibility for roles requiring Django expertise."
+        },
+        {
+          "action": "Add missing skills (Docker, AWS) to LinkedIn profile.",
+          "impact": "high",
+          "reason": "Critical for roles that involve cloud services and containerization."
+        },
+        {
+          "action": "Incorporate keywords like 'Django', 'Containerization', and 'Cloud Computing' in the LinkedIn profile summary and experience sections.",
+          "impact": "medium",
+          "reason": "Increases profile appearance in relevant searches by recruiters."
+        }
+      ]
+    },
+    "metadata": {
+      "agent_name": "CV Analysis Agent",
+      "timestamp": "2023-10-08T12:00:00Z",
+      "analysis_type": "cv_linkedin_gap"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"analysis_summary\": \"The LinkedIn profile is missing some critical experience details and specific skills that are present in the CV, leading to potential recruiter oversights.\",\n    \"gap_analysis\": {\n      \"skills_missing\": [\"Docker\", \"AWS\"],\n      \"experience_gaps\": [\n        \"Only 3 years of experience listed, missing 2 years\",\n        \"No description of experience with Django\"\n      ],\n      \"keyword_opportunities\": [\"Django\", \"Containerization\", \"Cloud Computing\"],\n      \"section_improvements\": [\n        {\n          \"section\": \"Experience\",\n          \"recommendation\": \"Update the years of experience to reflect 5 years and detail the use of Django within past projects.\",\n          \"priority\": \"high\"\n        },\n        {\n          \"section\": \"Skills\",\n          \"recommendation\": \"Add Docker and AWS to showcase technical competencies.\",\n          \"priority\": \"high\"\n        }\n      ]\n    },\n    \"optimization_score\": \"70\",\n    \"top_recommendations\": [\n      {\n        \"action\": \"Update LinkedIn profile experience to reflect 5 years and include detailed descriptions of Django projects.\",\n        \"impact\": \"high\",\n        \"reason\": \"Ensures consistency between CV and LinkedIn and maximizes visibility for roles requiring Django expertise.\"\n      },\n      {\n        \"action\": \"Add missing skills (Docker, AWS) to LinkedIn profile.\",\n        \"impact\": \"high\",\n        \"reason\": \"Critical for roles that involve cloud services and containerization.\"\n      },\n      {\n        \"action\": \"Incorporate keywords like 'Django', 'Containerization', and 'Cloud Computing' in the LinkedIn profile summary and experience sections.\",\n        \"impact\": \"medium\",\n        \"reason\": \"Increases profile appearance in relevant searches by recruiters.\"\n      }\n    ]\n  },\n  \"metadata\": {\n    \"agent_name\": \"CV Analysis Agent\",\n    \"timestamp\": \"2023-10-08T12:00:00Z\",\n    \"analysis_type\": \"cv_linkedin_gap\"\n  }\n}"
+}

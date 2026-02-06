@@ -1,0 +1,54 @@
+{
+  "agent_name": "Quality Assurance Agent",
+  "agent_id": "698582830ee88347863f0706",
+  "test_message": "Review this LinkedIn post: 'Excited to share that I just passed my AWS certification! After months of hard work, I'm now ready to take on cloud projects. #AWS #CloudComputing #CareerGrowth'",
+  "expected_purpose": "Reviews content quality and SEO",
+  "timestamp": "2026-02-06T05:59:10.863139",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "approval_status": "approved",
+      "overall_score": "90",
+      "quality_scores": {
+        "content_quality": "90",
+        "seo_optimization": "85",
+        "engagement_potential": "85",
+        "brand_consistency": "95"
+      },
+      "passed_checks": [
+        "No grammar or spelling errors",
+        "3-7 relevant hashtags included",
+        "Strong hook that stops the scroll",
+        "Professional tone maintained"
+      ],
+      "failed_checks": [
+        "Primary keyword appears in first 3 lines"
+      ],
+      "issues_found": [
+        {
+          "category": "seo",
+          "severity": "medium",
+          "issue": "Primary keyword <AWS> is not explicitly emphasized in the first three lines.",
+          "recommendation": "Consider structuring the post to highlight <AWS> more prominently early on."
+        }
+      ],
+      "revision_recommendations": [
+        "Introduce the primary keyword <AWS> in a more prominent way within the first sentence for better SEO."
+      ],
+      "strengths": [
+        "Clear cohesive messaging",
+        "Professional and enthusiastic tone",
+        "Good use of relevant hashtags"
+      ],
+      "approval_notes": "The post is well-written with a professional tone and shows clear value through the achievement. It engages well with the audience through personal success and relevant hashtags, making it likely to generate interest and interaction. Consider optimizing keyword placement for future posts."
+    },
+    "metadata": {
+      "agent_name": "Quality Assurance Agent",
+      "timestamp": "2023-11-01T12:00:00Z",
+      "review_type": "content_qa"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"approval_status\": \"approved\",\n    \"overall_score\": \"90\",\n    \"quality_scores\": {\n      \"content_quality\": \"90\",\n      \"seo_optimization\": \"85\",\n      \"engagement_potential\": \"85\",\n      \"brand_consistency\": \"95\"\n    },\n    \"passed_checks\": [\n      \"No grammar or spelling errors\",\n      \"3-7 relevant hashtags included\",\n      \"Strong hook that stops the scroll\",\n      \"Professional tone maintained\"\n    ],\n    \"failed_checks\": [\n      \"Primary keyword appears in first 3 lines\"\n    ],\n    \"issues_found\": [\n      {\n        \"category\": \"seo\",\n        \"severity\": \"medium\",\n        \"issue\": \"Primary keyword <AWS> is not explicitly emphasized in the first three lines.\",\n        \"recommendation\": \"Consider structuring the post to highlight <AWS> more prominently early on.\"\n      }\n    ],\n    \"revision_recommendations\": [\n      \"Introduce the primary keyword <AWS> in a more prominent way within the first sentence for better SEO.\"\n    ],\n    \"strengths\": [\n      \"Clear cohesive messaging\",\n      \"Professional and enthusiastic tone\",\n      \"Good use of relevant hashtags\"\n    ],\n    \"approval_notes\": \"The post is well-written with a professional tone and shows clear value through the achievement. It engages well with the audience through personal success and relevant hashtags, making it likely to generate interest and interaction. Consider optimizing keyword placement for future posts.\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Quality Assurance Agent\",\n    \"timestamp\": \"2023-11-01T12:00:00Z\",\n    \"review_type\": \"content_qa\"\n  }\n}"
+}
